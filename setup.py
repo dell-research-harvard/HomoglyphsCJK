@@ -12,7 +12,7 @@ setup(
     description="A Python package for fuzzy matching Chinese(simplified and traditional), Japanese and Korean, using character similarity trained using ViT transformer",
     long_description=long_des,
     long_description_content_type="text/markdown",
-    url="https://github.com/elle2222/homoglyphs_testpypi.git",
+    url="https://github.com/dell-research-harvard/homoglyphsFuzzyCJK.git",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
