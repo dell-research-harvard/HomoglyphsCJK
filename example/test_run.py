@@ -1,28 +1,15 @@
-
-
-
 # %%
 import pandas as pd
-
-# df_1 = pd.read_csv('df_1.csv')
-# df_2 = pd.read_csv('df_2.csv')
-
-# df_1 = df_1.head(100)
-# df_2 = df_2.head(100)
-
-# df_1.to_csv('df_1_small.csv')
-
-# df_2.to_csv('df_2_small.csv')
-
-# %%
-
-import homo_test
+from homo import homoglyph_distance,homoglyph_merge,download_dict
 
 df_1 = pd.read_csv('./df_1_small.csv')
 df_2 = pd.read_csv('./df_2_small.csv')
 
 ## Dataframe merge
-dataframe_merged = homo_test.homoglyph_merge('ja',df_1,df_2,'result','truth',parallel=True,num_workers=4)
+dataframe_merged = homoglyph_merge('ja',df_1,df_2,'ocred_text','truth_text',homo_lambda=1, insertion=1, deletion=1,parallel=True,num_workers=4)
+
+## Non-parallel
+dataframe_merged = homoglyph_merge('ja',df_1,df_2,'ocred_text','truth_text',homo_lambda=1, insertion=1, deletion=1) 
 '''
 Parameters:
 lang
@@ -34,8 +21,6 @@ key on dataframe 2
 ## Also need to pass in dataframe later on
 dataframe_merged.to_csv('./merged.csv')
 
-
-# %%
-cluster_dict = homo_test.download_dict('ja')
-print(homo_test.homoglyph_distance('我','我是'))
+download_dict('zhs')
+homoglyph_distance('苏萃乡','小苏莽乡',homo_lambda=1, insertion=1, deletion=1)
 
