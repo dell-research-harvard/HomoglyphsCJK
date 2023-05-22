@@ -1,7 +1,7 @@
 HomoglyphsCJK
 =====
 
-An efficient and useful tool to fuzzy match Japanese, Korean, Simplified Chinese or Traditional Chinese words, particular useful for OCRed text record linkage.
+An efficient and useful tool to fuzzy match Japanese, Korean, Simplified Chinese or Traditional Chinese words.
 
 ## Installation
 ```
