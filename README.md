@@ -47,9 +47,18 @@ When you firstly use this on one language, the homoglyph dict will be downloaded
 | 雪拉普岗    | 雪拉普岗日                | 1.0       | 
 
 + Homoglyph distance between two strings. The default weight on substitution, insertion, deletion is 1.
++ download_dict and homoglyph_merge will trigger downloading homoglyph dicts to your current directory if it does not already exist, otherwise it just load the existing dict from your local computer.
 
 ```python
+    
     download_dict('zhs')
     homoglyph_distance('苏萃乡','小苏莽乡',homo_lambda=1, insertion=1, deletion=1)
     # 1.88
+```
+
+## Citation
+
+Coming Soon
+```bibtex
+
 ```
