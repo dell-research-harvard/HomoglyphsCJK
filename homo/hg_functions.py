@@ -55,7 +55,7 @@ def download_dict(lang):
     global cluster_dict
     with open(cluster_dict_path,'rb') as f:
         cluster_dict = pickle.load(f) 
-    return cluster_dict
+    # return cluster_dict
 
 def homoglyph_distance(str1,str2, homo_lambda=1,insertion=1,deletion=1):
     m = len(str1)
