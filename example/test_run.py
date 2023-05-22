@@ -1,6 +1,6 @@
 # %%
 import pandas as pd
-from homo import homoglyph_distance,homoglyph_merge,download_dict
+from HomoglyphsCJK import homoglyph_distance,homoglyph_merge,download_dict
 
 df_1 = pd.read_csv('./df_1_small.csv')
 df_2 = pd.read_csv('./df_2_small.csv')
