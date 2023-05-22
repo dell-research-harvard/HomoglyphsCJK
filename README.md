@@ -5,7 +5,7 @@ An efficient and useful tool to fuzzy match Japanese, Korean, Simplified Chinese
 
 ## Installation
 ```
-pip install HomoglyphsCJK==0.0.3
+pip install HomoglyphsCJK
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ When you firstly use this on one language, the homoglyph dict will be downloaded
 + Merge two dataframes. When you merge two dataframes, you can specify the parallel argument to run multiprocessing. Mac users probably want to use Python version == 3.7 for multiprocessing.
 
 ```python
-    from homo import homoglyph_distance,homoglyph_merge,download_dict
+    from HomoglyphsCJK import homoglyph_distance,homoglyph_merge,download_dict
     import pandas as pd
     df_1 = pd.DataFrame(list(['苏萃乡','办雄','虐格给','雪拉普岗']),columns=['ocred_text'])
     df_2 = pd.DataFrame(list(['雪拉普岗日','小苏莽乡','协雄','唐格给']),columns=['truth_text'])
