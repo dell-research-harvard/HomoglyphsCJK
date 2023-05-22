@@ -6,7 +6,7 @@ with open("README.md","r") as fh:
 
 setup(
     name="HomoglyphsCJK",
-    version="0.0.1",
+    version="0.0.3",
     author="HomoglyphsCJK Team",
     author_email="homoglyphscjk@gmail.com",
     description="An easy Python package for fuzzy matching Chinese(simplified and traditional), Japanese and Korean, using character similarity trained from ViT transformer",
