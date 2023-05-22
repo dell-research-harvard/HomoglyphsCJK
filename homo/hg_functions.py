@@ -11,7 +11,6 @@ from multiprocess import cpu_count
 from multiprocess import Pool
 # from concurrent.futures import ProcessPoolExecutor as PoolExecutor
 # from .proxy import entry_point
-from multiprocessing import freeze_support
 import numpy as np
 # from numba import njit, types, prange,jit
 # from numba.typed import Dict, List
@@ -136,7 +135,7 @@ def homoglyph_merge(lang, df_1,df_2,key_1,key_2,homo_lambda=1, insertion=1, dele
     download_dict(lang)
 
     if parallel==False:
-        word_dist_min_list = map(partial(list_fd,list2=list2),result_list)
+        word_dist_min_list = map(partial(list_fd,list2=list2,homo_lambda=homo_lambda, insertion=insertion, deletion=deletion),result_list)#added the functions
     else:
         if num_workers==None:num_workers=cpu_count()#if the num_workers is specified, just use 
         with Pool(num_workers) as p:
@@ -206,7 +205,4 @@ def homoglyph_merge(lang, df_1,df_2,key_1,key_2,homo_lambda=1, insertion=1, dele
 #     # Implement the numba
 #     pass
 
-if __name__ == '__main__':
-    ## still cannot work...
-    freeze_support()
 # %%
