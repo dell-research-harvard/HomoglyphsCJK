@@ -1,4 +1,4 @@
-,Unnamed: 0,truth,image_path
+,Unnamed: 0,truth_text,image_path
 0,0,흥해,/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/PaddleOCR_testing/Paddle_test_images/Noisy_Multilang_renders/ko_gcv/흥해.png
 1,1,죽령천,/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/PaddleOCR_testing/Paddle_test_images/Noisy_Multilang_renders/ko_gcv/죽령천.png
 2,2,유유,/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/PaddleOCR_testing/Paddle_test_images/Noisy_Multilang_renders/ko_gcv/유유.png
