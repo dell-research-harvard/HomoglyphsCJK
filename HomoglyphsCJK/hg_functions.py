@@ -118,9 +118,16 @@ def homoglyph_merge(lang, df_1,df_2,key_1,key_2,homo_lambda=1, insertion=1, dele
     #cluster_dict = download_dict('ko')
     # Initialize the list 2
     list2 = df_2[key_2].tolist()
+    # key_2 to other variables
+    df_2_columns = df_2.columns.values.tolist()
+    df_2.set_index(key_2,inplace=True)
+    for df_2_col in df_2_columns:
+        if df_2_col!=key_2:
+            globals()['col%s' % df_2_col] = df_2.to_dict()[df_2_col]
+
     # Initialize the list 1
     result_list = df_1[key_1].tolist() # The result_list is list 1
-    assert len(list2) == len(result_list)
+    # assert len(list2) == len(result_list)
     list1 = [] # initialize the list1
     for res, truth in zip(result_list,list2):
         res_dict = {}
@@ -129,7 +136,7 @@ def homoglyph_merge(lang, df_1,df_2,key_1,key_2,homo_lambda=1, insertion=1, dele
         list1.append(res_dict)
     # Save output and initialize the accuracy results storage
     ## add the df_matched
-    df_matched = pd.DataFrame(list(zip(list2,result_list)), columns=[key_2,key_1])
+    # df_matched = pd.DataFrame(list(zip(list2,result_list)), columns=[key_2,key_1])
 
     global cluster_dict
     download_dict(lang)
@@ -152,11 +159,21 @@ def homoglyph_merge(lang, df_1,df_2,key_1,key_2,homo_lambda=1, insertion=1, dele
         list1[id]["matched_word_dist"] = round(word_dist_min[0],2)
         distance_list.append(round(word_dist_min[0],2))
 
-    df_matched = pd.DataFrame(list(zip(result_list, \
-        matched_list, distance_list, \
-            )),columns=[key_1, \
-                f'homo_matched_{key_2}','homo_dist', \
-                                        ])
+    for df_2_col in df_2_columns:
+        if df_2_col!=key_2:
+            globals()['col%s_list' % df_2_col] = []
+            for matched in matched_list:
+                globals()['col%s_list' % df_2_col].append(globals()['col%s' % df_2_col][matched])
+
+    aux_df = pd.DataFrame(list(matched_list),columns=[f'homo_matched_{key_2}'])# The matched_list is already on
+    for df_2_col in df_2_columns:
+        if df_2_col!=key_2:
+            aux_df = pd.concat([aux_df, pd.DataFrame(globals()['col%s_list' % df_2_col],columns=[df_2_col])],axis=1)
+    
+
+    df_matched = pd.concat([df_1, pd.DataFrame(list(distance_list),columns=['homo_dist']),
+            aux_df],axis=1
+            )
     return df_matched
     
 # @njit
