@@ -58,7 +58,7 @@ homoglyph_distance('苏萃乡','小苏莽乡',homo_lambda=1, insertion=1, deleti
 We encourage you to contribute to HomoglyphsCJK!
 
 ## Questions
-If you have any questions using this package, you can open an issue under our [GitHub repository](https://github.com/dell-research-harvard/HomoglyphsCJK.git). We are maintaining and updating this package, so stay tuned!
+If you have any questions using this package, you can open an issue under our [GitHub repository](https://github.com/dell-research-harvard/HomoglyphsCJK/issues). We are maintaining and updating this package, so stay tuned!
 
 ## Citation
 
