@@ -14,6 +14,7 @@ from multiprocess import Pool
 import numpy as np
 # from numba import njit, types, prange,jit
 # from numba.typed import Dict, List
+import copy
 
 def download_dict(lang):
     '''
@@ -117,13 +118,14 @@ def same_matched(a,b):
 def homoglyph_merge(lang, df_1,df_2,key_1,key_2,homo_lambda=1, insertion=1, deletion=1, parallel=False,num_workers=None):
     #cluster_dict = download_dict('ko')
     # Initialize the list 2
-    list2 = df_2[key_2].tolist()
+    df_2_aux = copy.deepcopy(df_2)
+    list2 = df_2_aux[key_2].tolist()
     # key_2 to other variables
-    df_2_columns = df_2.columns.values.tolist()
-    df_2.set_index(key_2,inplace=True)
+    df_2_columns = df_2_aux.columns.values.tolist()
+    df_2_aux.set_index(key_2,inplace=True)
     for df_2_col in df_2_columns:
         if df_2_col!=key_2:
-            globals()['col%s' % df_2_col] = df_2.to_dict()[df_2_col]
+            globals()['col%s' % df_2_col] = df_2_aux.to_dict()[df_2_col]
 
     # Initialize the list 1
     result_list = df_1[key_1].tolist() # The result_list is list 1
