@@ -10,7 +10,7 @@ pip install HomoglyphsCJK
 ## Usage
 There are two functionalities of this package: use **homoglyph_pairwise_distance** to calculate homoglyph distance between two strings, or use **homoglyph_merge** to merge two dataframes based on keys using homoglyphic edit distance which uses substitution cost considering character visual similarity.
 + If you use **homoglyph_merge** or **homoglyph_pairwise_distance** on specific language, the dict will be downloaded automatically if not already exist, otherwise load from your current directory. So please make sure you run the script from a folder that has permission to write. The available languages are [zhs, zht, ko, ja] for simplified Chinese, traditional Chinese, Korean and Japanese respectively.
-+ **homoglyph_merge** merges two dataframes. When you merge two dataframes, you can specify the parallel argument to use multiprocessing. If you don't specify the num_workers when using parallel, it will automatically use the number of all detected CPU cores
++ **homoglyph_merge** merges two dataframes. When you merge two dataframes, you can specify the parallel argument to use multiprocessing. If you don't specify the num_workers when using parallel, it will automatically use the number of all detected CPU cores.
 
 ```python
 from HomoglyphsCJK import  homoglyph_pairwise_distance,homoglyph_merge
