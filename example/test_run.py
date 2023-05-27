@@ -1,6 +1,6 @@
 # %%
 import pandas as pd
-from HomoglyphsCJK import homoglyph_distance,homoglyph_merge,download_dict
+from HomoglyphsCJK import homoglyph_pairwise_distance,homoglyph_merge
 
 df_1 = pd.read_csv('./df_1_small.csv')
 df_2 = pd.read_csv('./df_2_small.csv')
@@ -21,8 +21,7 @@ key on dataframe 2
 ## Also need to pass in dataframe later on
 dataframe_merged.to_csv('./merged.csv')
 
-download_dict('zhs')
-homoglyph_distance('苏萃乡','小苏莽乡',homo_lambda=1, insertion=1, deletion=1)
+homoglyph_distance('苏萃乡','小苏莽乡','zhs',homo_lambda=1, insertion=1, deletion=1)
 
 
 # %%
