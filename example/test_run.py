@@ -21,7 +21,7 @@ key on dataframe 2
 ## Also need to pass in dataframe later on
 dataframe_merged.to_csv('./merged.csv')
 
-homoglyph_distance('苏萃乡','小苏莽乡','zhs',homo_lambda=1, insertion=1, deletion=1)
+homoglyph_pairwise_distance('苏萃乡','小苏莽乡','zhs',homo_lambda=1, insertion=1, deletion=1)
 
 
 # %%
