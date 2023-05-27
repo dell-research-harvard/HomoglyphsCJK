@@ -1,3 +1,3 @@
-﻿
-from HomoglyphsCJK.hg_functions import download_dict,homoglyph_distance,homoglyph_merge
+
+from HomoglyphsCJK.hg_functions import download_dict,homoglyph_distance,homoglyph_merge, homoglyph_pairwise_distance
 
