@@ -1,6 +1,5 @@
 HomoglyphsCJK
 =====
-
 An efficient and useful tool to fuzzy match Japanese, Korean, Simplified Chinese or Traditional Chinese words, using character visual similarity.
 
 ## Installation
@@ -9,10 +8,9 @@ pip install HomoglyphsCJK
 ```
 
 ## Usage
-There are two functionalities of this package: calculate homoglyph distance between two strings, or merge two dataframes based on keys using homoglyphic edit distance which uses substitution cost considering character visual similarity.
-+ If you use homoglyph_merge on specific language, the dict will be downloaded automatically. If you want to calculate pair wise homoglyphic edit distance, before using homoglyph_distance(str1, str2), you need to download_dict(lang) to either download or load the homoglyphs dict.
-+ When you firstly use this on one language, the homoglyph dict will be downloaded automatically in the current directory you run your script. So please make sure you run the script from a folder that has permission to write. The available languages are [zhs, zht, ko, ja] for simplified Chinese, traditional Chinese, Korean and Japanese respectively.
-+ Merge two dataframes. When you merge two dataframes, you can specify the parallel argument to run multiprocessing. If you don't specify the num_workers when using parallel, it will automatically use the number of all detected CPU cores
+There are two functionalities of this package: use **homoglyph_pairwise_distance** to calculate homoglyph distance between two strings, or use **homoglyph_merge** to merge two dataframes based on keys using homoglyphic edit distance which uses substitution cost considering character visual similarity.
++ If you use **homoglyph_merge** or **homoglyph_pairwise_distance** on specific language, the dict will be downloaded automatically if not already exist, otherwise load from your current directory. So please make sure you run the script from a folder that has permission to write. The available languages are [zhs, zht, ko, ja] for simplified Chinese, traditional Chinese, Korean and Japanese respectively.
++ **homoglyph_merge** merges two dataframes. When you merge two dataframes, you can specify the parallel argument to run multiprocessing. If you don't specify the num_workers when using parallel, it will automatically use the number of all detected CPU cores
 
 ```python
 from HomoglyphsCJK import  homoglyph_pairwise_distance,homoglyph_merge
@@ -45,11 +43,9 @@ weight on deletion cost, default is 1
 | 虐格给      | 唐格给                   | 0.87      |
 | 雪拉普岗    | 雪拉普岗日                | 1.0       | 
 
-+ Homoglyph distance between two strings. The default weight on substitution, insertion, deletion is 1.
-+ download_dict will trigger downloading homoglyph dicts to your current directory if it does not already exist, otherwise it just load the existing dict from your local computer.
++ **homoglyph_pairwise_distance** calculates homoglyphic edit distance between two strings. The default weight on substitution, insertion, deletion is 1.
 
 ```python
-    
 homoglyph_pairwise_distance('苏萃乡','小苏莽乡','zhs',homo_lambda=1, insertion=1, deletion=1)
 # 1.88
 ```
