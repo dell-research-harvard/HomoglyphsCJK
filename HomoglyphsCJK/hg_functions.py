@@ -58,6 +58,39 @@ def download_dict(lang):
         cluster_dict = pickle.load(f) 
     # return cluster_dict
 
+def homoglyph_pairwise_distance(str1,str2, lang, homo_lambda=1,insertion=1,deletion=1):
+    global cluster_dict
+    download_dict(lang)
+    m = len(str1)
+    n = len(str2)
+    #dp = np.zeros([m+1,n+1]) # it is m rows, n columns
+    dp = [[0 for x in range(n + 1)] for x in range(m + 1)] # This list is quicker than the above numpy array.
+    for i in range(m+1):
+        for j in range(n+1):
+            if i==0 and j==0:
+                dp[i][j]=0
+            elif i==0:
+                dp[i][j]=dp[i][j-1]+1
+            elif j==0:
+                dp[i][j]=dp[i-1][j]+1         
+            elif str1[i-1]==str2[j-1]:
+                dp[i][j]=dp[i-1][j-1]
+            else:
+                global cluster_dict
+                if str1[i-1] in cluster_dict:
+                    if str2[j-1] in cluster_dict[str1[i-1]]:
+                        dist=homo_lambda*(1-cluster_dict[str1[i-1]][str2[j-1]]) # This is gamma actually, the substitution cost is the homoglyphic distance
+                    else:
+                        dist=1 
+                else:
+                    dist=1
+
+                dp[i][j] =  min(dp[i][j-1]+insertion,	 # Insert
+                                dp[i-1][j]+deletion,	 # Remove
+                                dp[i-1][j-1]+dist) 
+
+    return dp[m][n]
+
 def homoglyph_distance(str1,str2, homo_lambda=1,insertion=1,deletion=1):
     m = len(str1)
     n = len(str2)
