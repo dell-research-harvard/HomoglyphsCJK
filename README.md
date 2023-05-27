@@ -1,7 +1,7 @@
 HomoglyphsCJK
 =====
 
-An efficient and useful tool to fuzzy match Japanese, Korean, Simplified Chinese or Traditional Chinese words.
+An efficient and useful tool to fuzzy match Japanese, Korean, Simplified Chinese or Traditional Chinese words, using character visual similarity.
 
 ## Installation
 ```
@@ -9,13 +9,13 @@ pip install HomoglyphsCJK
 ```
 
 ## Usage
-There are two functionalities of this package: calculate homoglyph distance between two strings, or merge two dataframes based on keys using homoglyph distance.
+There are two functionalities of this package: calculate homoglyph distance between two strings, or merge two dataframes based on keys using homoglyphic edit distance which uses substitution cost considering character visual similarity.
 + If you use homoglyph_merge on specific language, the dict will be downloaded automatically. If you want to calculate pair wise homoglyphic edit distance, before using homoglyph_distance(str1, str2), you need to download_dict(lang) to either download or load the homoglyphs dict.
 + When you firstly use this on one language, the homoglyph dict will be downloaded automatically in the current directory you run your script. So please make sure you run the script from a folder that has permission to write. The available languages are [zhs, zht, ko, ja] for simplified Chinese, traditional Chinese, Korean and Japanese respectively.
 + Merge two dataframes. When you merge two dataframes, you can specify the parallel argument to run multiprocessing. If you don't specify the num_workers when using parallel, it will automatically use the number of all detected CPU cores
 
 ```python
-from HomoglyphsCJK import homoglyph_distance,homoglyph_merge,download_dict
+from HomoglyphsCJK import  homoglyph_pairwise_distance,homoglyph_merge
 import pandas as pd
 df_1 = pd.DataFrame(list(['苏萃乡','办雄','虐格给','雪拉普岗']),columns=['query'])
 df_2 = pd.DataFrame(list(['雪拉普岗日','小苏莽乡','协雄','唐格给','太阳村','月亮湾']),columns=['key'])
@@ -50,8 +50,7 @@ weight on deletion cost, default is 1
 
 ```python
     
-download_dict('zhs')
-homoglyph_distance('苏萃乡','小苏莽乡',homo_lambda=1, insertion=1, deletion=1)
+homoglyph_pairwise_distance('苏萃乡','小苏莽乡','zhs',homo_lambda=1, insertion=1, deletion=1)
 # 1.88
 ```
 ## Contributing
@@ -61,8 +60,13 @@ We encourage you to contribute to HomoglyphsCJK!
 If you have any questions using this package, you can open an issue under our [GitHub repository](https://github.com/dell-research-harvard/HomoglyphsCJK/issues). We are maintaining and updating this package, so stay tuned!
 
 ## Citation
-
-Coming Soon
 ```bibtex
-
+@misc{yang2023quantifying,
+      title={Quantifying Character Similarity with Vision Transformers}, 
+      author={Xinmei Yang and Abhishek Arora and Shao-Yu Jheng and Melissa Dell},
+      year={2023},
+      eprint={2305.14672},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
 ```
