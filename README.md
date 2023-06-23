@@ -8,10 +8,11 @@ pip install HomoglyphsCJK
 ```
 
 ## Usage
-There are two functionalities of this package: use **homoglyph_pairwise_distance** to calculate homoglyph distance between two strings, or use **homoglyph_merge** to merge two dataframes based on keys using homoglyphic edit distance which uses substitution cost considering character visual similarity.
-+ If you use **homoglyph_merge** or **homoglyph_pairwise_distance** on specific language, the dict will be downloaded automatically if not already exist, otherwise load from your current directory. So please make sure you run the script from a folder that has permission to write. The available languages are [zhs, zht, ko, ja] for simplified Chinese, traditional Chinese, Korean and Japanese respectively.
-+ **homoglyph_merge** merges two dataframes. When you merge two dataframes, you can specify the parallel argument to use multiprocessing. If you don't specify the num_workers when using parallel, it will automatically use the number of all detected CPU cores.
-+ Note that homoglyph_merge de-duplicates your passed in key columns and will in the end only return one unique value of the key specified. if you need to merge panel dataset to cross-sectional dataset for instance, you can de-duplicate the panel dataset key before you pass it in, then you will need to merge back your panel data using the matched key.
+The package provides two functionalities:
++ The **homoglyph_pairwise_distance** calculates the homoglyph distance between two strings. It determines the similarity between strings by considering characters that have similar visual representations. This function can be used to measure the distance between pairs of strings.
++ The **homoglyph_merge** merges two dataframes based on keys using homoglyphic edit distance. It considers the visual similarity of characters and performs a merge operation on the specified columns. When merging dataframes, you can specify the columns to merge on. Additionally, the merging process can be parallelized using multiprocessing by setting the parallel argument. If the number of workers is not specified, the package will automatically utilize all available CPU cores.
++ It's important to note that when using homoglyph_merge or homoglyph_pairwise_distance for a specific language, the package will download the required dictionary if it doesn't already exist. Otherwise, it will load the dictionary from the current directory. Ensure that you run the script from a folder with write permissions. The available languages for homoglyph operations are simplified Chinese (zhs), traditional Chinese (zht), Korean (ko), and Japanese (ja).
++ When using **homoglyph_merge**, it de-duplicates the query and key columns provided for efficiency. The function returns only the unique matches. Matching these unique matches back to the dataset is a standard operation in data wrangling and can be done using pandas or other environments. The package focuses on the merge operation and leaves the post-merge matching to the user.
 
 ```python
 from HomoglyphsCJK import  homoglyph_pairwise_distance,homoglyph_merge
