@@ -20,9 +20,9 @@ def download_dict(lang):
     '''
     This function is like if it does not exist, then download, otherwise just load from local machine
     '''
-    if lang not in ['ko','ja','zhs','zht']:
-        raise Exception("language must be specified as ko, ja, zhs or zht")
-    elif lang=='ko':
+    # if lang not in ['ko','ja','zhs','zht']:
+    #     raise Exception("language must be specified as ko, ja, zhs or zht")
+    if lang=='ko':
         ## Download the dicts to the current folder
         if not os.path.exists('./ko/char_char_dist_dict_800_korean.pickle'):
             print(f'downloading {lang} homoglyph dict...')
@@ -53,6 +53,12 @@ def download_dict(lang):
             print('downloaded!')
         cluster_dict_path = './zht/char_char_dist_dict_800_t_chinese_expanded_easy.pickle'
 
+    elif os.path.exists(lang) and '.pickle' in lang:
+        print('loading your own trained homoglyphs dict!')
+        cluster_dict_path = lang
+    else:
+         raise Exception("language must be specified as ko, ja, zhs, zht or a valid homoglyphs dict pickle file path!")
+    
     global cluster_dict
     with open(cluster_dict_path,'rb') as f:
         cluster_dict = pickle.load(f) 
