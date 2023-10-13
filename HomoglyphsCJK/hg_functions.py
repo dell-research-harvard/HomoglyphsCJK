@@ -58,7 +58,7 @@ def download_dict(lang):
         cluster_dict = pickle.load(f) 
     # return cluster_dict
 
-def homoglyph_pairwise_distance(str1,str2, lang, homo_lambda=1,insertion=1,deletion=1):
+def hg_distance(str1,str2, lang, homo_lambda=1,insertion=1,deletion=1):
     global cluster_dict
     download_dict(lang)
     m = len(str1)
@@ -148,7 +148,7 @@ def same_matched(a,b):
             return 1
     return 0
 
-def homoglyph_merge(lang, df_1,df_2,key_1,key_2,homo_lambda=1, insertion=1, deletion=1, parallel=False,num_workers=None):
+def hg_merge(lang, df_1,df_2,key_1,key_2,homo_lambda=1, insertion=1, deletion=1, parallel=False,num_workers=None):
     #cluster_dict = download_dict('ko')
     # Initialize the list 2
     df_2_aux = copy.deepcopy(df_2)
